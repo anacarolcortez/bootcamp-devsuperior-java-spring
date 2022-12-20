@@ -1,6 +1,8 @@
 package com.heapster.dscatalog.controller;
 
 import com.heapster.dscatalog.entities.Category;
+import com.heapster.dscatalog.services.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +16,12 @@ import java.util.List;
 @RequestMapping(value = "/categories")
 public class CategoryController {
 
+    @Autowired
+    private CategoryService service;
+
     @GetMapping
     public ResponseEntity findAll(){
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category(123L,"Books"));
-        categories.add(new Category(321L, "Electronics"));
+        List<Category> categories = service.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(categories);
     }
 }
