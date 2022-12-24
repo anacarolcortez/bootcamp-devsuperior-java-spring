@@ -1,6 +1,7 @@
 package com.heapster.dscatalog.controllers.exceptions;
 
-import com.heapster.dscatalog.services.exceptions.EntityNotFoundException;
+import com.heapster.dscatalog.services.exceptions.DataBaseException;
+import com.heapster.dscatalog.services.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,14 +13,27 @@ import java.time.Instant;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException error, HttpServletRequest request){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException error, HttpServletRequest request){
+        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError();
         err.setTimestamp(Instant.now());
-        err.setStatus(HttpStatus.NOT_FOUND.value());
+        err.setStatus(httpStatus.value());
         err.setError("Resource not found");
         err.setMessagem(error.getMessage());
         err.setPath(request.getRequestURI());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+        return ResponseEntity.status(httpStatus).body(err);
+    }
+
+    @ExceptionHandler(DataBaseException.class)
+    public ResponseEntity<StandardError> entityNotFound(DataBaseException error, HttpServletRequest request){
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError();
+        err.setTimestamp(Instant.now());
+        err.setStatus(httpStatus.value());
+        err.setError("Database exception");
+        err.setMessagem(error.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(httpStatus).body(err);
     }
 }
