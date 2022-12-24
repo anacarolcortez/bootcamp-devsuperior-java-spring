@@ -1,4 +1,4 @@
-INSERT INTO categories (name) VALUES('Books');
-INSERT INTO categories (name) VALUES('Electronics');
-INSERT INTO categories (name) VALUES('Accessories');
-INSERT INTO categories (name) VALUES('Computers');
+INSERT INTO categories (name, created_At) VALUES('Books', NOW());
+INSERT INTO categories (name, created_At) VALUES('Electronics', NOW());
+INSERT INTO categories (name, created_At) VALUES('Accessories', NOW());
+INSERT INTO categories (name, created_At) VALUES('Computers', NOW());
