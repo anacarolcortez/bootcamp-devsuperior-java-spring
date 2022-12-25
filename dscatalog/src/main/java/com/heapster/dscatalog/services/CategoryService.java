@@ -8,6 +8,8 @@ import com.heapster.dscatalog.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +24,17 @@ public class CategoryService {
     @Autowired
     private CategoryRepository repository;
 
-    @Transactional(readOnly = true)
-    public List<CategoryDTO> findAll(){
-        List<Category> categories = repository.findAll();
-        return categories.stream().map(c -> new CategoryDTO(c)).collect(Collectors.toList());
-    }
+//    @Transactional(readOnly = true)
+//    public List<CategoryDTO> findAll(){
+//        List<Category> categories = repository.findAll();
+//        return categories.stream().map(c -> new CategoryDTO(c)).collect(Collectors.toList());
+//    }
 
+    @Transactional(readOnly = true)
+    public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
+        Page<Category> categories = repository.findAll(pageRequest);
+        return categories.map(c -> new CategoryDTO(c));
+    }
     @Transactional(readOnly = true)
     public CategoryDTO findById(Long id){
         Optional<Category> obj = repository.findById(id);
@@ -64,4 +71,5 @@ public class CategoryService {
             throw new DataBaseException("Integrity violation");
         }
     }
+
 }
