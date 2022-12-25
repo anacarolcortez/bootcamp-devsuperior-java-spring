@@ -1,0 +1,2 @@
+# Bootcamp DevSuperior em Java e Spring
+Criação de web services REST, padrão DTO, com CRUD completo em Java e Spring Boot, tratamento de exceções, paginação de dados. testes automatizados unitários e de integração, TDD, JUnit, mock de dependências com Mockito e MockBean, validação de dados com Bean Validation, autenticação e autorização com OAuth2 e JWT, gestão de banco de dados com ORM, consultas ao BD com JPA e JPQL, container de aplicações com Docker, realização de build e implantação na AWS, CI/CD.
