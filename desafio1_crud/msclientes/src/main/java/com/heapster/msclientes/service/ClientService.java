@@ -5,6 +5,7 @@ import com.heapster.msclientes.model.Client;
 import com.heapster.msclientes.repository.ClientRepository;
 import com.heapster.msclientes.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class ClientService {
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id){
         Optional<Client> client = repository.findById(id);
-        Client entity = client.orElseThrow(() -> new ResourceNotFoundException("Client id not found"));
+        Client entity = client.orElseThrow(() -> new ResourceNotFoundException("Client id not found " + id));
         return new ClientDTO(entity);
     }
 
@@ -40,6 +41,7 @@ public class ClientService {
         return new ClientDTO(client);
     }
 
+    @Transactional
     public ClientDTO update(Long id, ClientDTO clientDTO){
         try{
             Client client = repository.getReferenceById(id);
@@ -47,7 +49,15 @@ public class ClientService {
             client = repository.save(client);
             return new ClientDTO(client);
         } catch (EntityNotFoundException err){
-            throw new ResourceNotFoundException("Client id not found" + id);
+            throw new ResourceNotFoundException("Client id not found " + id);
+        }
+    }
+
+    public void delete(Long id){
+        try{
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException err){
+            throw new ResourceNotFoundException("Client id not found " + id);
         }
     }
 }
