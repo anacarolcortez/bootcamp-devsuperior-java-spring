@@ -1,5 +1,7 @@
 package com.heapster.msclientes.model;
 
+import com.heapster.msclientes.dto.ClientDTO;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
@@ -28,6 +30,14 @@ public class Client {
         this.income = income;
         this.birthDate = birthDate;
         this.children = children;
+    }
+
+    public Client(ClientDTO clientDTO) {
+        this.name = clientDTO.getName();
+        this.cpf = clientDTO.getCpf();
+        this.income = clientDTO.getIncome();
+        this.birthDate = clientDTO.getBirthDate();
+        this.children = clientDTO.getChildren();
     }
 
     public Long getId() {

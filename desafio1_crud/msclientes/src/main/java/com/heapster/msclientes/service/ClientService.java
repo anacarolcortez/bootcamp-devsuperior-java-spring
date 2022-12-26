@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
@@ -29,5 +30,12 @@ public class ClientService {
         Optional<Client> client = repository.findById(id);
         Client entity = client.orElseThrow(() -> new ResourceNotFoundException("Client id not found"));
         return new ClientDTO(entity);
+    }
+
+    @Transactional
+    public ClientDTO create(ClientDTO clientDTO){
+        Client client = new Client(clientDTO);
+        client = repository.save(client);
+        return new ClientDTO(client);
     }
 }
