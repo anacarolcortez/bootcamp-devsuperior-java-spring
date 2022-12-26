@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -37,5 +38,16 @@ public class ClientService {
         Client client = new Client(clientDTO);
         client = repository.save(client);
         return new ClientDTO(client);
+    }
+
+    public ClientDTO update(Long id, ClientDTO clientDTO){
+        try{
+            Client client = repository.getReferenceById(id);
+            client = client.update(clientDTO);
+            client = repository.save(client);
+            return new ClientDTO(client);
+        } catch (EntityNotFoundException err){
+            throw new ResourceNotFoundException("Client id not found" + id);
+        }
     }
 }

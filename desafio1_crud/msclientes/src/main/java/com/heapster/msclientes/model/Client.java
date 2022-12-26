@@ -100,4 +100,28 @@ public class Client {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public Client update(ClientDTO clientDTO) {
+        if (clientDTO.getName() != null){
+            this.name = clientDTO.getName();
+        }
+
+        if (clientDTO.getCpf() != null){
+            this.name = clientDTO.getCpf();
+        }
+
+        if (clientDTO.getIncome() != null){
+            this.income = clientDTO.getIncome();
+        }
+
+        if (clientDTO.getBirthDate() != null){
+            this.birthDate = clientDTO.getBirthDate();
+        }
+
+        if (clientDTO.getChildren() != null){
+            this.children = clientDTO.getChildren();
+        }
+
+        return this;
+    }
 }

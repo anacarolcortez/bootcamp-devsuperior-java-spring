@@ -47,4 +47,11 @@ public class ClientController {
                 .toUri();
         return ResponseEntity.created(uri).body(client);
     }
+
+    // Não há regra do que é possível alterar na especificação do desafio. Desta forma, exceto o id, tudo foi permitido alterar
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO){
+        ClientDTO client = service.update(id, clientDTO);
+        return ResponseEntity.ok().body(client);
+    }
 }
