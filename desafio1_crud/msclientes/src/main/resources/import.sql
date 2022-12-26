@@ -1,3 +1,13 @@
-INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Daenerys Targaryen', '914.448.790-81', '15000', NOW(), 3);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Daenerys Targaryen', '914.448.790-81', '30000', NOW(), 3);
 INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('John Snow', '669.987.280-00', '12000', NOW(), 0);
 INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Ned Stark', '288.656.110-06', '20000', NOW(), 4);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Catelyn Stark', '503.990.680-31', '0', NOW(), 4);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Sansa Stark', '756.634.750-01', '0', NOW(), 0);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Arya Stark', '229.036.950-08', '1500', NOW(), 0);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Bran Stark', '479.104.440-10', '0', NOW(), 0);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Brienne de Tarth', '703.275.990-49', '5000', NOW(), 0);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Tyrion Lannister', '933.923.500-28', '13000', NOW(), 4);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Cersei Lannister', '753.343.670-98', '1000000', NOW(), 3);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Joffrey Lannister', '613.675.800-80', '1000000', NOW(), 0);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Jaime Lannister', '198.476.820-46', '50000', NOW(), 3);
+INSERT INTO clients (name, cpf, income, birth_Date, children) VALUES('Samwell Tarly', '731.981.440-43', '3000', NOW(), 1);
