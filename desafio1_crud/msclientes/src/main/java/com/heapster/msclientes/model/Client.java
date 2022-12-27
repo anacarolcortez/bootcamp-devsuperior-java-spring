@@ -107,7 +107,7 @@ public class Client {
         }
 
         if (clientDTO.getCpf() != null){
-            this.name = clientDTO.getCpf();
+            this.cpf = clientDTO.getCpf();
         }
 
         if (clientDTO.getIncome() != null){
