@@ -29,7 +29,7 @@ public class CategoryController {
 //    }
 
     @GetMapping
-    public ResponseEntity findAll(
+    public ResponseEntity<Page<CategoryDTO>> findAll(
             @RequestParam(value = "page", defaultValue="0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue="10") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue="ASC") String direction,
@@ -41,13 +41,13 @@ public class CategoryController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity findById(@PathVariable Long id){
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
         CategoryDTO categoryDTO = service.findById(id);
         return ResponseEntity.ok().body(categoryDTO);
     }
 
     @PostMapping
-    public ResponseEntity insert(@RequestBody CategoryDTO categoryDTO){
+    public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO categoryDTO){
         CategoryDTO category = service.insert(categoryDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -57,13 +57,13 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO){
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO){
         CategoryDTO category = service.update(id, categoryDTO);
         return ResponseEntity.ok().body(category);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

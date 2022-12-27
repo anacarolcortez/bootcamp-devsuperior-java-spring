@@ -35,6 +35,7 @@ public class CategoryService {
         Page<Category> categories = repository.findAll(pageRequest);
         return categories.map(c -> new CategoryDTO(c));
     }
+
     @Transactional(readOnly = true)
     public CategoryDTO findById(Long id){
         Optional<Category> obj = repository.findById(id);
