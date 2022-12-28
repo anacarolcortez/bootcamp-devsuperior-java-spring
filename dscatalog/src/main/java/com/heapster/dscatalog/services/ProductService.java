@@ -46,7 +46,7 @@ public class ProductService {
         Product product = new Product();
         copyDTOToEntity(productDTO, product);
         product = repository.save(product);
-        return new ProductDTO(product);
+        return new ProductDTO(product, product.getCategories());
     }
 
     @Transactional
@@ -55,7 +55,7 @@ public class ProductService {
             Product product = repository.getReferenceById(id);
             copyDTOToEntity(productDTO, product);
             product = repository.save(product);
-            return new ProductDTO(product);
+            return new ProductDTO(product, product.getCategories());
         } catch (EntityNotFoundException err){
             throw new ResourceNotFoundException("Id not found" + id);
         }
