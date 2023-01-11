@@ -1,5 +1,6 @@
 package com.heapster.dscatalog.factory;
 
+import com.heapster.dscatalog.dtos.CategoryDTO;
 import com.heapster.dscatalog.dtos.ProductDTO;
 import com.heapster.dscatalog.entities.Category;
 import com.heapster.dscatalog.entities.Product;
@@ -17,6 +18,16 @@ public class Factory {
     public static ProductDTO createProductDTO(){
         Product product = createProduct();
         return new ProductDTO(product, product.getCategories());
+    }
+
+    public static Category createCategory(){
+        Category category = new Category(2L, "Electronics");
+        return category;
+    }
+
+    public static CategoryDTO createCategoryDTO(){
+        Category category = createCategory();
+        return new CategoryDTO(category);
     }
 
 }
