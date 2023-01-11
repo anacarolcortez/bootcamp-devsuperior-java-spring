@@ -19,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.heapster.dscatalog.entities.Category;
 import com.heapster.dscatalog.entities.Product;
-import com.heapster.dscatalog.dtos.CategoryDTO;
 import com.heapster.dscatalog.dtos.ProductDTO;
 import com.heapster.dscatalog.factory.Factory;
 import com.heapster.dscatalog.repositories.CategoryRepository;
@@ -46,18 +45,16 @@ public class ProductServiceTests {
     private Product product;
     private ProductDTO productDTO;
     private Category category;
-    private CategoryDTO categoryDTO;
 
     @BeforeEach
     void setUp() throws Exception{
         existingId = 1L;
-        nonExistingId = 1000L;
-        dependentId = 2L;
+        nonExistingId = 2L;
+        dependentId = 3L;
         product = Factory.createProduct();
         productDTO =  Factory.createProductDTO();
         page = new PageImpl<>(List.of(product));
         category = Factory.createCategory();
-        categoryDTO = Factory.createCategoryDTO();
 
         //simulando o comportamento real do repositório, que foi mockado para o teste unitário
         Mockito.doNothing().when(repository).deleteById(existingId);
@@ -119,7 +116,7 @@ public class ProductServiceTests {
     public void findByIdShouldReturnProductWhenIdExists() {
         ProductDTO result = service.findById(existingId);
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(result.getId(), existingId);
+        Assertions.assertEquals(existingId, result.getId());
 
         Mockito.verify(repository).findById(existingId);
     }
@@ -136,8 +133,8 @@ public class ProductServiceTests {
 
     @Test
     public void updateShouldReturnProductDTOWhenIdExists(){
-        ProductDTO productDTO = service.update(existingId, this.productDTO);
-        Assertions.assertNotNull(productDTO);
+        ProductDTO product = service.update(existingId, productDTO);
+        Assertions.assertNotNull(product);
 
         Mockito.verify(repository).getReferenceById(existingId);
         Mockito.verify(categoryRepository).getReferenceById(existingId);
@@ -156,7 +153,12 @@ public class ProductServiceTests {
 
     @Test
     public void saveShouldReturnProductDTOWhenIdDoesNotExist(){
+        ProductDTO newProduct = service.insert(productDTO);
 
+        Assertions.assertNotNull(newProduct);
+        Assertions.assertEquals(productDTO.getId(), newProduct.getId());
+
+        Mockito.verify(repository).save(ArgumentMatchers.any());
     }
 
 }

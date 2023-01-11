@@ -11,7 +11,7 @@ public class Factory {
 
     public static Product createProduct(){
         Product product = new Product(1L, "Phone", "Great Phone", 1800.0, "https://imgur.igsjed3.jpeg", Instant.parse("2020-10-20T03:03:00Z"));
-        product.getCategories().add(new Category(2L, "Electronics"));
+        product.getCategories().add(new Category(1L, "Books"));
         return product;
     }
 
@@ -21,7 +21,7 @@ public class Factory {
     }
 
     public static Category createCategory(){
-        Category category = new Category(2L, "Electronics");
+        Category category = new Category(1L, "Books");
         return category;
     }
 
