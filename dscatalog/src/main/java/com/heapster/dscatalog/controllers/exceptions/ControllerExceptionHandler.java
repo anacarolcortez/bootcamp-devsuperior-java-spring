@@ -20,7 +20,7 @@ public class ControllerExceptionHandler {
         err.setTimestamp(Instant.now());
         err.setStatus(httpStatus.value());
         err.setError("Resource not found");
-        err.setMessagem(error.getMessage());
+        err.setMessage(error.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(httpStatus).body(err);
     }
@@ -32,7 +32,7 @@ public class ControllerExceptionHandler {
         err.setTimestamp(Instant.now());
         err.setStatus(httpStatus.value());
         err.setError("Database exception");
-        err.setMessagem(error.getMessage());
+        err.setMessage(error.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(httpStatus).body(err);
     }

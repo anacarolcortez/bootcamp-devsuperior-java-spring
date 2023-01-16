@@ -8,7 +8,7 @@ public class StandardError implements Serializable {
     private Instant timestamp;
     private Integer status;
     private String error;
-    private String messagem;
+    private String message;
     private String path;
 
     public StandardError(){}
@@ -37,12 +37,12 @@ public class StandardError implements Serializable {
         this.error = error;
     }
 
-    public String getMessagem() {
-        return messagem;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessagem(String messagem) {
-        this.messagem = messagem;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getPath() {
