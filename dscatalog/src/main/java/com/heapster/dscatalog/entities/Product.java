@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="products")
+@Table(name="tb_product")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class Product implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "products_categories",
+            name = "tb_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
@@ -105,6 +105,6 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name, description, price, imgUrl, date, categories);
     }
 }
