@@ -5,6 +5,9 @@ import com.heapster.dscatalog.entities.Product;
 import com.heapster.dscatalog.entities.Role;
 import com.heapster.dscatalog.entities.User;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,8 +15,11 @@ import java.util.Set;
 public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
+    @NotBlank(message = "Primeiro nome deve ser preenchido")
     private String firstName;
+    @NotBlank(message = "Sobrenome deve ser preenchido")
     private String lastName;
+    @Email(message = "E-mail em formato inválido")
     private String email;
 
     private Set<RoleDTO> roles = new HashSet<>();

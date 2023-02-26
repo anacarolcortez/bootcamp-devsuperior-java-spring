@@ -2,12 +2,15 @@ package com.heapster.dscatalog.dtos;
 
 import com.heapster.dscatalog.entities.Category;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 public class CategoryDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @NotBlank(message = "Nome deve ser preenchido")
     private String name;
 
     public CategoryDTO(){}

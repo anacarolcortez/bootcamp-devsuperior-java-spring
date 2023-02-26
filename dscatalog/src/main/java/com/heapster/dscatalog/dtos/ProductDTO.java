@@ -3,6 +3,10 @@ package com.heapster.dscatalog.dtos;
 import com.heapster.dscatalog.entities.Category;
 import com.heapster.dscatalog.entities.Product;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -13,10 +17,16 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @NotBlank(message = "Nome deve ser preenchido")
     private String name;
+    @NotBlank(message = "Descrição deve ser preenchida")
     private String description;
+    @Positive(message = "Preço deve ser positivo")
     private Double price;
+    @NotBlank(message = "Url da imagem deve ser preenchida")
     private String imgUrl;
+
+    @PastOrPresent(message = "Data deve ser, no máximo, de hoje")
     private Instant date;
 
     private List<CategoryDTO> categories = new ArrayList<>();
