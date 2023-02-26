@@ -38,14 +38,14 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserDTO> findAllPaged(Pageable pageable){
         Page<User> users = repository.findAll(pageable);
-        return users.map(u -> new UserDTO(u));
+        return users.map(u -> new UserDTO(u, u.getRoles()));
     }
 
     @Transactional(readOnly = true)
     public UserDTO findById(Long id){
         Optional<User> obj = repository.findById(id);
         User user = obj.orElseThrow(() -> new ResourceNotFoundException("Product id not found " + id));
-        return new UserDTO(user);
+        return new UserDTO(user, user.getRoles());
     }
 
     @Transactional

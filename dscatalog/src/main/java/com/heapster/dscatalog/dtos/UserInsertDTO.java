@@ -1,5 +1,10 @@
 package com.heapster.dscatalog.dtos;
 
+import com.heapster.dscatalog.entities.Role;
+import com.heapster.dscatalog.entities.User;
+
+import java.util.Set;
+
 public class UserInsertDTO extends UserDTO {
 
     private String password;

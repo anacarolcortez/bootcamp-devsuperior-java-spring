@@ -1,5 +1,8 @@
 package com.heapster.dscatalog.dtos;
 
+import com.heapster.dscatalog.entities.Category;
+import com.heapster.dscatalog.entities.Product;
+import com.heapster.dscatalog.entities.Role;
 import com.heapster.dscatalog.entities.User;
 
 import java.io.Serializable;
@@ -29,7 +32,11 @@ public class UserDTO implements Serializable {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
-        user.getRoles().forEach(role -> this.roles.add(new RoleDTO()));
+    }
+
+    public UserDTO(User user, Set<Role> roles) {
+        this(user);
+        roles.forEach(r -> this.roles.add(new RoleDTO(r)));
     }
 
     public Long getId() {
