@@ -3,6 +3,7 @@ package com.heapster.dscatalog.controllers;
 
 import com.heapster.dscatalog.dtos.UserDTO;
 import com.heapster.dscatalog.dtos.UserInsertDTO;
+import com.heapster.dscatalog.dtos.UserUpdateDTO;
 import com.heapster.dscatalog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO userDTO){
         UserDTO user = service.update(id, userDTO);
         return ResponseEntity.ok().body(user);
     }

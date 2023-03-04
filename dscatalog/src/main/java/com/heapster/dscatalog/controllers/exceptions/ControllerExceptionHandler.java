@@ -55,6 +55,4 @@ public class ControllerExceptionHandler {
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(httpStatus).body(err);
     }
-
-    //MethodArgumentNotValidException
 }
