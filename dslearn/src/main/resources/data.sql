@@ -12,3 +12,8 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
+
+INSERT INTO tb_course (name, img_Uri, img_Gray_Uri) VALUES ('Spring Boot', 'https://www.devmedia.com.br/arquivos/Salas/Backend/Spring/43/2316/thumb.jpg', 'https://hermes.dio.me/articles/cover/d5fa540b-70a4-4e4f-97bf-e2e2371a0619.png');
+
+INSERT INTO tb_offer (edition, start_Moment, end_Moment, course_id) VALUES ('1.0', TIMESTAMP WITH TIME ZONE '2023-07-17T20:50:07.12345Z', TIMESTAMP WITH TIME ZONE '2023-11-15T20:50:07.12345Z', 1);
+INSERT INTO tb_offer (edition, start_Moment, end_Moment, course_id) VALUES ('2.0', TIMESTAMP WITH TIME ZONE '2024-02-17T20:50:07.12345Z', TIMESTAMP WITH TIME ZONE '2024-06-15T20:50:07.12345Z', 1);
